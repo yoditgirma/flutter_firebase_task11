@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "980103469711",
+    "project_id": "social-profile-app",
+    "storage_bucket": "social-profile-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:980103469711:android:5018c1382de6f806456efa",
+        "android_client_info": {
+          "package_name": "com.example.social_profile_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGTv7QqcqO4ZCndUnkDdDhwvoUMmiVJrA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
