@@ -13,3 +13,12 @@ class SignUpUser extends AuthEvent {
 }
 
 class SignOutUser extends AuthEvent {}
+
+class LogInUser extends AuthEvent {
+  final String email, password;
+
+  LogInUser({required this.email, required this.password});
+
+  @override
+  List<Object> get props => [email, password];
+}
