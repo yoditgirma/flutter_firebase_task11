@@ -4,18 +4,18 @@ import 'package:social_profile_app/bloc/auth_bloc.dart';
 import 'package:social_profile_app/bloc/auth_event.dart';
 import 'package:social_profile_app/bloc/auth_state.dart';
 import 'package:social_profile_app/pages/home_page.dart';
-import 'package:social_profile_app/pages/login_page.dart';
+import 'package:social_profile_app/pages/signup.dart';
 
-class SignUpPage extends StatefulWidget {
+class LoginPage extends StatefulWidget {
   static String id = 'login_screen';
 
-  const SignUpPage({super.key});
+  const LoginPage({super.key});
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _LoginPageState extends State<LoginPage> {
   // Text Controllers
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -32,7 +32,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Create Your Account',
+          'Hello Signin!',
           style: TextStyle(color: Colors.deepPurple),
         ),
         centerTitle: true,
@@ -95,14 +95,14 @@ class _SignUpPageState extends State<SignUpPage> {
                   child: ElevatedButton(
                     onPressed: () {
                       BlocProvider.of<AuthBloc>(context).add(
-                        SignUpUser(
+                        LogInUser(
                           email: emailController.text.trim(),
                           password: passwordController.text.trim(),
                         ),
                       );
                     },
                     child: Text(
-                      state is AuthLodingState ? '.......' : 'Signup',
+                      state is AuthLodingState ? '.......' : 'Login',
                       style: TextStyle(fontSize: 20),
                     ),
                   ),
@@ -113,16 +113,16 @@ class _SignUpPageState extends State<SignUpPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text("Already have an account? "),
+                const Text("Don't have an account? "),
                 GestureDetector(
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => LoginPage()),
+                      MaterialPageRoute(builder: (context) => SignUpPage()),
                     );
                   },
                   child: const Text(
-                    'Login',
+                    'Sign Up',
                     style: TextStyle(color: Colors.deepPurple),
                   ),
                 ),

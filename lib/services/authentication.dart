@@ -33,4 +33,24 @@ class AuthService {
       await FirebaseAuth.instance.signOut();
     }
   }
+
+  // LOGIN USER
+
+  Future<UserModel?> loginUser(String email, String password) async {
+    try {
+      final UserCredential userCredential = await _firebaseAuth
+          .signInWithEmailAndPassword(
+            email: email.trim(),
+            password: password.trim(),
+          );
+      final User? firebaseUser = userCredential.user;
+      if (firebaseUser != null) {
+        print("Login Sucessfuly");
+        return UserModel(id: firebaseUser.uid, email: firebaseUser.email ?? '');
+      }
+    } on FirebaseAuthException catch (e) {
+      throw Exception(e.message);
+    }
+    return null;
+  }
 }
