@@ -18,7 +18,7 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AuthBloc(FirebaseAuth.instance), // Provide it here
+      create: (context) => AuthBloc(FirebaseAuth.instance),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: AuthFlowPage(),

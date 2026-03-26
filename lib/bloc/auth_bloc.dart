@@ -9,7 +9,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthService authService = AuthService();
 
   AuthBloc(FirebaseAuth instance) : super(AuthInitialState()) {
-    on<AuthEvent>((event, emit) {});
+    // on<AuthEvent>((event, emit) {});
 
     on<SignUpUser>((event, emit) async {
       emit(AuthLodingState(isLoadign: true));
@@ -24,19 +24,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           emit(AuthFailureState(errormsg: 'Create user failed'));
         }
       } catch (e) {
-        print(e.toString());
+        emit(AuthFailureState(errormsg: e.toString()));
       }
-      emit(AuthLodingState(isLoadign: false));
+      // emit(AuthLodingState(isLoadign: false));
     });
 
     on<SignOutUser>((event, emit) async {
       emit(AuthLodingState(isLoadign: true));
 
       try {
-        authService.signOutUser();
+        await authService.signOutUser();
+        emit(AuthInitialState());
       } catch (e) {
-        print('error');
-        print(e.toString());
+        emit(AuthFailureState(errormsg: e.toString()));
       }
       emit(AuthLodingState(isLoadign: false));
     });
@@ -50,6 +50,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         );
         if (user != null) {
           emit(AuthSuccessSate(user: user));
+        } else {
+          emit(AuthFailureState(errormsg: 'Login failed'));
         }
       } catch (e) {
         emit(AuthFailureState(errormsg: e.toString()));
